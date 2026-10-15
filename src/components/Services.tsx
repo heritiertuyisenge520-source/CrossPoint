@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 const services = [
   {
@@ -17,21 +17,8 @@ const services = [
     tag: "Sourcing"
   },
   {
-    title: "Quality Control & Inspection",
-    description: "Our team on the ground in China inspects every item before it leaves the factory to guarantee quality.",
-    images: [
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&q=80&w=1200"
-    ],
-    features: ["Pre-shipment Inspection", "Factory Audits", "Lab Testing", "Container Loading Supervision"],
-    tag: "Quality"
-  },
-  {
     title: "Global Logistics & Shipping",
-    description: "Fast and reliable air and sea freight from major Chinese ports directly to our warehouse in Kigali.",
+    description: "Fast and reliable ocean and air freight from China directly to our warehouse in Kigali.",
     images: [
       "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1200",
@@ -54,6 +41,58 @@ const services = [
     ],
     features: ["Duty Calculation", "Import Permits", "Tax Optimization", "Hassle-free Clearing"],
     tag: "Customs"
+  },
+  {
+    title: "Air Ticketing & Travel Booking",
+    description: "Best-price flight tickets for business and personal travel, booked and confirmed for you.",
+    images: [
+      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1540339832862-474599807836?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&q=80&w=1200"
+    ],
+    features: ["Best Fare Search", "Domestic & International", "Group Bookings", "Instant E-Tickets"],
+    tag: "Travel"
+  },
+  {
+    title: "Hotel Booking",
+    description: "Comfortable hotel reservations worldwide at competitive rates, with flexible options for every trip.",
+    images: [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200"
+    ],
+    features: ["Worldwide Hotels", "Competitive Rates", "Flexible Cancellation", "Business & Leisure"],
+    tag: "Stays"
+  },
+  {
+    title: "Visa Application Support",
+    description: "End-to-end visa assistance — documentation, applications, and follow-up handled by our experts.",
+    images: [
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1200"
+    ],
+    features: ["Document Preparation", "Application Filling", "Appointment Booking", "Status Follow-up"],
+    tag: "Visa"
+  },
+  {
+    title: "Airport Pickup & Transfers",
+    description: "Reliable airport pickups and private transfers — on-time rides to and from Kigali airport.",
+    images: [
+      "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1503376780353-766e92767b70?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&q=80&w=1200"
+    ],
+    features: ["Meet & Greet", "Kigali Airport Pickup", "Private Vehicles", "24/7 Availability"],
+    tag: "Transfers"
   }
 ];
 
@@ -68,7 +107,7 @@ function ServiceImageSlider({ images, title, tag }: { images: string[], title: s
   }, [images.length]);
 
   return (
-    <div className="lg:w-1/2 h-80 lg:h-auto relative bg-brand-navy/5 overflow-hidden">
+    <div className="lg:w-1/2 h-56 sm:h-64 lg:h-auto relative bg-brand-navy/5 overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
@@ -113,11 +152,11 @@ export default function Services() {
             Our Services
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-brand-navy tracking-tighter">
-            Comprehensive Import Solutions
+            Comprehensive Import & Travel Solutions
           </h2>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -125,7 +164,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} bg-white rounded-[2rem] overflow-hidden shadow-sm border border-brand-navy/5`}
+              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} bg-white rounded-[1.5rem] overflow-hidden shadow-sm border border-brand-navy/5`}
             >
               <ServiceImageSlider 
                 images={service.images} 
@@ -133,14 +172,14 @@ export default function Services() {
                 tag={service.tag} 
               />
               
-              <div className="lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center">
-                <h3 className="text-3xl font-extrabold text-brand-navy mb-4 tracking-tight">
+              <div className="lg:w-1/2 p-6 lg:p-10 flex flex-col justify-center">
+                <h3 className="text-2xl font-extrabold text-brand-navy mb-3 tracking-tight">
                   {service.title}
                 </h3>
-                <p className="text-brand-navy/60 mb-8 leading-relaxed">
+                <p className="text-brand-navy/60 mb-6 text-sm leading-relaxed">
                   {service.description}
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                   {service.features.map((feature) => (
                     <div key={feature} className="flex items-center gap-2 text-sm font-semibold text-brand-navy/80">
                       <CheckCircle2 className="w-4 h-4 text-brand-orange" />
@@ -148,10 +187,6 @@ export default function Services() {
                     </div>
                   ))}
                 </div>
-                <button className="inline-flex items-center gap-2 text-brand-orange font-bold hover:gap-4 transition-all group">
-                  Learn more about {service.tag}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
               </div>
             </motion.div>
           ))}

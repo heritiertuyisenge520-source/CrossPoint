@@ -1,12 +1,23 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowRight } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { handleSectionClick } from '../utils/navigation';
+
+const navLinks = [
+  { name: 'Home', id: null },
+  { name: 'Services', id: 'services' },
+  { name: 'Categories', id: 'categories' },
+  { name: 'Process', id: 'process' },
+  { name: 'About', id: 'about' },
+  { name: 'Contact', id: 'contact' },
+];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,15 +26,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/#services' },
-    { name: 'Categories', href: '/#categories' },
-    { name: 'Process', href: '/#process' },
-    { name: 'About', href: '/#about' },
-    { name: 'Contact', href: '/#contact' },
-  ];
 
   const isHome = location.pathname === '/';
 
@@ -38,7 +40,7 @@ export default function Navbar() {
           <div className="relative w-12 h-12 flex items-center justify-center">
             <div className="absolute inset-0 bg-brand-orange/20 rounded-xl blur-lg animate-pulse" />
             <img 
-              src="/logo.png" 
+              src="/logo.jpg" 
               alt="CrossPoint Solutions Logo" 
               className="relative w-full h-full object-contain rounded-lg border border-white/10 shadow-2xl"
               referrerPolicy="no-referrer"
@@ -57,21 +59,15 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
+            <button
               key={link.name}
-              to={link.href}
-              className="text-sm font-medium text-white/70 hover:text-brand-orange transition-colors"
+              type="button"
+              onClick={(e) => handleSectionClick(e, link.id, location.pathname, navigate)}
+              className="text-sm font-medium text-white/70 hover:text-brand-orange transition-colors cursor-pointer"
             >
               {link.name}
-            </Link>
+            </button>
           ))}
-          <Link 
-            to="/#contact"
-            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 transition-all group"
-          >
-            Get Started
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -94,22 +90,18 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <Link
+                <button
                   key={link.name}
-                  to={link.href}
-                  className="text-lg font-medium text-white/70 hover:text-brand-orange"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  type="button"
+                  onClick={(e) => {
+                    handleSectionClick(e, link.id, location.pathname, navigate);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-lg font-medium text-white/70 hover:text-brand-orange text-left cursor-pointer"
                 >
                   {link.name}
-                </Link>
+                </button>
               ))}
-              <Link 
-                to="/#contact"
-                className="bg-brand-orange text-white px-6 py-3 rounded-xl font-bold text-center mt-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get Started
-              </Link>
             </div>
           </motion.div>
         )}

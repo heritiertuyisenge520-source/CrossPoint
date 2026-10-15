@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { scrollToSection } from '../utils/navigation';
 
 export default function Hero() {
   const containerVariants = {
@@ -14,7 +14,7 @@ export default function Hero() {
     },
   };
 
-  const titleWords = "Global ocean cargo — Efficient, on time and trusted".split(" ");
+  const titleWords = "Sea, air & sourcing — on time, trusted".split(" ");
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-navy overflow-hidden py-24 px-6">
@@ -75,19 +75,21 @@ export default function Hero() {
           transition={{ duration: 1, delay: 2, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <Link
-            to="/#categories"
-            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-10 py-5 rounded-full font-extrabold transition-all shadow-xl shadow-brand-orange/20 flex items-center gap-3 group"
+          <button
+            type="button"
+            onClick={() => scrollToSection('categories')}
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-10 py-5 rounded-full font-extrabold transition-all shadow-xl shadow-brand-orange/20 flex items-center gap-3 group cursor-pointer"
           >
             Start Sourcing
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            to="/#services"
-            className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-10 py-5 rounded-full font-extrabold transition-all backdrop-blur-sm"
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSection('services')}
+            className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-10 py-5 rounded-full font-extrabold transition-all backdrop-blur-sm cursor-pointer"
           >
             Our Services
-          </Link>
+          </button>
         </motion.div>
 
         {/* Elegant Scroll Indicator */}

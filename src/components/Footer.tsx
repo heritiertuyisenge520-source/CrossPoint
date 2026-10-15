@@ -1,17 +1,31 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { handleSectionClick } from '../utils/navigation';
+
+const footerLinks = [
+  { name: 'Home', id: null },
+  { name: 'Services', id: 'services' },
+  { name: 'Categories', id: 'categories' },
+  { name: 'Process', id: 'process' },
+  { name: 'About', id: 'about' },
+  { name: 'Contact', id: 'contact' },
+];
 
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
-    <footer id="contact" className="bg-brand-navy py-8 text-white border-t border-white/5">
+    <footer className="bg-brand-navy pt-16 pb-8 text-white border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+          {/* Brand */}
           <div className="space-y-4 max-w-sm">
             <Link to="/" className="flex items-center gap-3">
               <div className="relative w-10 h-10 flex items-center justify-center">
-                <img 
-                  src="/logo.png" 
-                  alt="CrossPoint Solutions Logo" 
+                <img
+                  src="/logo.jpg"
+                  alt="CrossPoint Solutions Logo"
                   className="w-full h-full object-contain rounded-lg border border-white/10"
                   referrerPolicy="no-referrer"
                 />
@@ -37,39 +51,66 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 w-full lg:w-auto">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                <Mail className="w-4 h-4 text-brand-orange" />
-              </div>
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-0.5">Email</p>
-                <a href="mailto:micodieudonne001@gmail.com" className="text-xs hover:text-brand-orange transition-colors">
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-orange mb-6">
+              Quick Links
+            </h4>
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-3">
+              {footerLinks.map((link) => (
+                <li key={link.name}>
+                  <button
+                    type="button"
+                    onClick={(e) => handleSectionClick(e, link.id, location.pathname, navigate)}
+                    className="text-sm font-medium text-white/60 hover:text-brand-orange transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-orange mb-6">
+              Contact
+            </h4>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4 text-brand-orange" />
+                </div>
+                <a href="mailto:micodieudonne001@gmail.com" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
                   micodieudonne001@gmail.com
                 </a>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                <Phone className="w-4 h-4 text-brand-orange" />
-              </div>
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-0.5">Phone</p>
-                <a href="tel:0793107029" className="text-xs hover:text-brand-orange transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4 text-brand-orange" />
+                </div>
+                <a href="https://wa.me/250793107029" target="_blank" rel="noopener noreferrer" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
                   0793107029
                 </a>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                <MapPin className="w-4 h-4 text-brand-orange" />
-              </div>
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-0.5">Location</p>
-                <p className="text-xs">Kigali, Rwanda</p>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-brand-orange" />
+                </div>
+                <p className="text-sm text-white/60">Kigali, Rwanda</p>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-white/30">
+            © {new Date().getFullYear()} CrossPoint Solutions .LTD. All rights reserved.
+          </p>
+          <p className="text-xs text-white/30">
+            China → Rwanda · Sourcing & Logistics
+          </p>
         </div>
       </div>
     </footer>

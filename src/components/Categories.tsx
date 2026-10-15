@@ -66,7 +66,7 @@ export default function Categories() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -77,7 +77,7 @@ export default function Categories() {
               className="group"
             >
               <Link to={`/category/${category.id}`} className="block">
-                <div className="relative overflow-hidden rounded-[2rem] aspect-[4/5] mb-6 bg-brand-navy/5">
+                <div className="relative overflow-hidden rounded-[1.5rem] aspect-[4/3] mb-4 bg-brand-navy/5">
                   <img
                     src={category.image}
                     alt={category.title}
@@ -87,24 +87,24 @@ export default function Categories() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                   
-                  <div className="absolute bottom-8 left-8 right-8">
+                  <div className="absolute bottom-5 left-5 right-5">
                     <div className="flex items-center justify-between items-end">
                       <div>
-                        <p className="text-brand-orange text-[10px] font-black uppercase tracking-widest mb-2">
+                        <p className="text-brand-orange text-[10px] font-black uppercase tracking-widest mb-1">
                           {category.count}
                         </p>
-                        <h3 className="text-2xl font-bold text-white tracking-tight">
+                        <h3 className="text-xl font-bold text-white tracking-tight">
                           {category.title}
                         </h3>
                       </div>
-                      <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center -mb-1 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
-                        <ArrowRight className="w-5 h-5 text-white" />
+                      <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center -mb-1 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                        <ArrowRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>
                 </div>
               </Link>
-              <p className="text-brand-navy/60 text-sm leading-relaxed px-4">
+              <p className="text-brand-navy/60 text-sm leading-relaxed px-1">
                 {category.description}
               </p>
             </motion.div>

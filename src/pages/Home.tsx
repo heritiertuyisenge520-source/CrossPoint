@@ -4,6 +4,7 @@ import Services from '../components/Services';
 import Categories from '../components/Categories';
 import Process from '../components/Process';
 import BentoStats from '../components/BentoStats';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Categories />
       <Process />
       <BentoStats />
+      <Contact />
       <Footer />
     </main>
   );

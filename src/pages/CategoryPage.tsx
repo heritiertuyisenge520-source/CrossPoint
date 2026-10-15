@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Filter, Search, ShoppingBag } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+
+const DEFAULT_TITLE = 'CrossPoint SOLUTIONS .LTD | China to Rwanda Logistics';
 
 const categoryData: Record<string, any> = {
   "electronics": {
@@ -88,6 +91,15 @@ const categoryData: Record<string, any> = {
 export default function CategoryPage() {
   const { id } = useParams();
   const category = categoryData[id || ""];
+
+  useEffect(() => {
+    document.title = category
+      ? `${category.title} | CrossPoint SOLUTIONS .LTD`
+      : 'Page Not Found | CrossPoint SOLUTIONS .LTD';
+    return () => {
+      document.title = DEFAULT_TITLE;
+    };
+  }, [category]);
 
   if (!category) {
     return (
