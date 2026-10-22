@@ -22,21 +22,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4 max-w-sm">
             <Link to="/" className="flex items-center gap-3">
-              <div className="relative w-10 h-10 flex items-center justify-center">
+              <div className="relative h-12 flex items-center justify-center">
                 <img
-                  src="/logo.jpg"
+                  src="/logo-with-text.jpg"
                   alt="CrossPoint Solutions Logo"
-                  className="w-full h-full object-contain rounded-lg border border-white/10"
+                  className="h-full w-auto object-contain"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-black tracking-tighter text-white leading-none">
-                  CrossPoint
-                </span>
-                <span className="text-[10px] font-black tracking-[0.3em] text-brand-orange">
-                  SOLUTIONS .LTD
-                </span>
               </div>
             </Link>
             <p className="text-white/50 text-xs leading-relaxed">
@@ -81,8 +73,8 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-brand-orange" />
                 </div>
-                <a href="mailto:micodieudonne001@gmail.com" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
-                  micodieudonne001@gmail.com
+                <a href="mailto:micomyiza.dieudonne@crosspointsolution.rw" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  micomyiza.dieudonne@crosspointsolution.rw
                 </a>
               </div>
               <div className="flex items-center gap-3">

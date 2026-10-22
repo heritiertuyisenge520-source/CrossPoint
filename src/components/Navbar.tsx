@@ -37,22 +37,14 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <div className="relative w-12 h-12 flex items-center justify-center">
+          <div className="relative h-14 flex items-center justify-center">
             <div className="absolute inset-0 bg-brand-orange/20 rounded-xl blur-lg animate-pulse" />
             <img 
-              src="/logo.jpg" 
+              src="/logo-with-text.jpg" 
               alt="CrossPoint Solutions Logo" 
-              className="relative w-full h-full object-contain rounded-lg border border-white/10 shadow-2xl"
+              className="relative h-full w-auto object-contain"
               referrerPolicy="no-referrer"
             />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-2xl font-black tracking-tighter text-white leading-none">
-              CrossPoint
-            </span>
-            <span className="text-[11px] font-black tracking-[0.3em] text-brand-orange">
-              SOLUTIONS .LTD
-            </span>
           </div>
         </Link>
 
