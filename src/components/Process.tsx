@@ -1,81 +1,148 @@
 import { motion } from 'motion/react';
+import { ArrowRight, Search, ShieldCheck, Clock, Headphones } from 'lucide-react';
+import { scrollToSection } from '../utils/navigation';
 
-const steps = [
+const timeline = [
   {
-    number: "01",
-    title: "Request",
-    description: "Tell us what you need. We'll find the best suppliers and provide a detailed quote.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200"
+    title: 'Request Received',
+    location: 'Kigali, Rwanda',
+    detail: 'Tell us what you need — we source and quote.',
+    status: 'done',
   },
   {
-    number: "02",
-    title: "Negotiate",
-    description: "We handle price negotiations and contract terms to ensure the best value for you.",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1200"
+    title: 'Factory Confirmed',
+    location: 'Guangzhou, China',
+    detail: 'Price negotiation and supplier verification.',
+    status: 'done',
   },
   {
-    number: "03",
-    title: "Inspect",
-    description: "Our quality control team inspects goods at the factory to ensure they meet standards.",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200"
+    title: 'Quality Inspected',
+    location: 'Origin factory',
+    detail: 'Goods checked before they leave China.',
+    status: 'current',
   },
   {
-    number: "04",
-    title: "Deliver",
-    description: "We manage the entire logistics chain and deliver your cargo safely to Kigali.",
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1200"
-  }
+    title: 'Delivered to Kigali',
+    location: 'Kigali, Rwanda',
+    detail: 'Ocean or air freight, customs, door delivery.',
+    status: 'upcoming',
+  },
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="py-24 bg-brand-navy relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/10 blur-[120px] rounded-full -mr-48 -mt-48" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-orange/5 blur-[120px] rounded-full -ml-48 -mb-48" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="mb-20">
-          <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em] mb-4 block">
-            How it works
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tighter max-w-2xl">
-            How we move your cargo across the skies and oceans
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+    <section id="process" className="relative bg-[#061018] py-16 md:py-24">
+      <div className="max-w-[1400px] mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+          <div className="rounded-3xl border border-white/8 bg-white/[0.03] p-8 md:p-10 flex flex-col justify-between min-h-[360px]">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight mb-4">
+                Follow Every Shipment.
+                <br />
+                Total Transparency.
+              </h2>
+              <p className="text-white/50 text-sm leading-relaxed max-w-md">
+                Monitor your cargo at every stage — sourcing, inspection, freight, and
+                customs — with a dedicated CrossPoint coordinator from China to Kigali.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-4 mt-8">
+                <Stat icon={ShieldCheck} title="Factory QC" copy="Inspection before shipping" />
+                <Stat icon={Clock} title="On-time delivery" copy="Fastest China–Kigali routes" />
+                <Stat icon={Headphones} title="24/7 support" copy="Always a coordinator on call" />
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => scrollToSection('contact')}
+              className="mt-8 text-brand-orange hover:text-white text-sm font-semibold inline-flex items-center gap-2 cursor-pointer transition-colors self-start"
             >
-              <div className="relative mb-6 overflow-hidden rounded-2xl aspect-[4/3] bg-white/5">
+              Track Shipment
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-3xl border border-white/8 bg-[#0B1826] p-6 md:p-7"
+          >
+            <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 mb-6">
+              <Search className="w-4 h-4 text-white/40" />
+              <span className="text-sm text-white/80 font-medium tracking-wide">CPS-RW-01482</span>
+            </div>
+
+            <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-6">
+              <div className="relative pl-5">
+                <div className="absolute left-[7px] top-2 bottom-3 w-px bg-white/10" />
+                {timeline.map((step) => (
+                  <div key={step.title} className="relative pb-6 last:pb-0">
+                    <span
+                      className={`absolute -left-5 top-1.5 w-3.5 h-3.5 rounded-full border-2 ${
+                        step.status === 'upcoming'
+                          ? 'border-white/20 bg-transparent'
+                          : 'border-brand-orange bg-brand-orange'
+                      }`}
+                    />
+                    <p className="text-sm font-semibold text-white">{step.title}</p>
+                    <p className="text-xs text-white/45 mt-0.5">{step.location}</p>
+                    <p className="text-[11px] text-white/30 mt-1">{step.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-2xl overflow-hidden border border-white/8 bg-black/20">
                 <img
-                  src={step.image}
-                  alt={step.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&q=80&w=800"
+                  alt="Container shipment in transit"
+                  className="w-full h-28 object-cover"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                 />
-                <div className="absolute top-4 left-4 bg-brand-orange text-white text-xs font-black px-3 py-1 rounded-lg">
-                  Step {step.number}
+                <div className="p-4 space-y-2.5">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">
+                    Shipment details
+                  </p>
+                  <DetailRow label="Corridor" value="China → Rwanda" />
+                  <DetailRow label="Mode" value="Sea / Air" />
+                  <DetailRow label="Status" value="In transit" />
+                  <DetailRow label="Origin" value="Guangzhou, CN" />
+                  <DetailRow label="Destination" value="Kigali, RW" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-orange transition-colors">
-                {step.title}
-              </h3>
-              <p className="text-white/50 text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between gap-3 text-xs">
+      <span className="text-white/40">{label}</span>
+      <span className="text-white/85 font-medium">{value}</span>
+    </div>
+  );
+}
+
+function Stat({
+  icon: Icon,
+  title,
+  copy,
+}: {
+  icon: typeof ShieldCheck;
+  title: string;
+  copy: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <Icon className="w-4 h-4 text-brand-orange mt-0.5 shrink-0" />
+      <div>
+        <p className="text-sm font-semibold text-white">{title}</p>
+        <p className="text-xs text-white/40">{copy}</p>
+      </div>
+    </div>
   );
 }

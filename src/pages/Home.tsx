@@ -13,8 +13,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
-      <Categories />
       <Process />
+      <Categories />
       <BentoStats />
       <Contact />
       <Footer />
