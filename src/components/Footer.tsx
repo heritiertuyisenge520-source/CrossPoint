@@ -1,20 +1,16 @@
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { handleSectionClick } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const footerLinks = [
-  { name: 'Home', id: null },
-  { name: 'About', id: 'about' },
-  { name: 'Services', id: 'services' },
-  { name: 'Destinations', id: 'categories' },
-  { name: 'Track Shipment', id: 'process' },
-  { name: 'Contact', id: 'contact' },
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '/about' },
+  { name: 'Services', to: '/services' },
+  { name: 'Destinations', to: '/destinations' },
+  { name: 'Track Shipment', to: '/track' },
+  { name: 'Contact', to: '/contact' },
 ];
 
 export default function Footer() {
-  const location = useLocation();
-  const navigate = useNavigate();
-
   return (
     <footer className="bg-brand-navy border-t border-white/5 py-8">
       <div className="max-w-[1400px] mx-auto px-6">
@@ -31,13 +27,12 @@ export default function Footer() {
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {footerLinks.map((link) => (
               <li key={link.name}>
-                <button
-                  type="button"
-                  onClick={(e) => handleSectionClick(e, link.id, location.pathname, navigate)}
-                  className="text-sm text-white/55 hover:text-white transition-colors cursor-pointer"
+                <Link
+                  to={link.to}
+                  className="text-sm text-white/55 hover:text-white transition-colors"
                 >
                   {link.name}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>

@@ -9,7 +9,7 @@ import {
   PlaneTakeoff,
   ArrowRight,
 } from 'lucide-react';
-import { scrollToSection } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 import ServiceGlobe from './ServiceGlobe';
 import { globeScenes, type ServiceSceneId } from '../data/globeScenes';
 
@@ -48,14 +48,13 @@ export default function Services() {
               From ocean freight to air cargo, sourcing, and last-mile delivery in Kigali,
               we offer flexible, secure, and cost-effective solutions to keep your business moving.
             </p>
-            <button
-              type="button"
-              onClick={() => scrollToSection('contact')}
-              className="text-brand-orange hover:text-white text-sm font-semibold inline-flex items-center gap-2 mb-10 cursor-pointer transition-colors"
+            <Link
+              to="/services"
+              className="text-brand-blue hover:text-white text-sm font-semibold inline-flex items-center gap-2 mb-10 cursor-pointer transition-colors"
             >
               Explore All Services
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {services.map((service, index) => {
@@ -78,7 +77,7 @@ export default function Services() {
                   >
                     <service.icon
                       className={`w-6 h-6 mb-4 transition-colors ${
-                        selected ? 'text-brand-orange' : 'text-white/80 group-hover:text-brand-orange'
+                        selected ? 'text-brand-blue' : 'text-white/80 group-hover:text-brand-blue'
                       }`}
                       strokeWidth={1.5}
                     />

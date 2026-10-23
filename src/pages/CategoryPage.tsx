@@ -105,7 +105,7 @@ export default function CategoryPage() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-brand-navy text-white p-6">
         <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
-        <Link to="/" className="text-brand-orange hover:underline flex items-center gap-2">
+        <Link to="/" className="text-brand-blue hover:underline flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </Link>
       </div>
@@ -196,7 +196,7 @@ export default function CategoryPage() {
                 </div>
                 <div className="px-2">
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-brand-navy text-lg group-hover:text-brand-orange transition-colors">
+                    <h3 className="font-bold text-brand-navy text-lg group-hover:text-brand-blue transition-colors">
                       {item.name}
                     </h3>
                   </div>

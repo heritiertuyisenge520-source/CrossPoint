@@ -59,13 +59,13 @@ export default function Contact() {
             >
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-2 text-brand-orange">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-2 text-brand-blue">
                     {office.country} Office
                   </p>
                   <h3 className="text-3xl font-extrabold tracking-tight text-white">{office.city}</h3>
                 </div>
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10">
-                  <MapPin className="w-7 h-7 text-brand-orange" />
+                  <MapPin className="w-7 h-7 text-brand-blue" />
                 </div>
               </div>
 
@@ -74,13 +74,13 @@ export default function Contact() {
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-white/5">
-                    <MapPin className="w-4 h-4 text-brand-orange" />
+                    <MapPin className="w-4 h-4 text-brand-blue" />
                   </div>
                   <p className="text-sm font-medium text-white/80">{office.address}</p>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-white/5">
-                    <Phone className="w-4 h-4 text-brand-orange" />
+                    <Phone className="w-4 h-4 text-brand-blue" />
                   </div>
                   <div className="flex flex-col gap-1.5">
                     {office.phones.map((phone) => (
@@ -89,7 +89,7 @@ export default function Contact() {
                         href={phone.href}
                         target={phone.href.startsWith('http') ? '_blank' : undefined}
                         rel={phone.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-sm font-medium text-white/80 hover:text-brand-orange transition-colors"
+                        className="text-sm font-medium text-white/80 hover:text-brand-blue transition-colors"
                       >
                         {phone.display}
                       </a>
@@ -98,18 +98,18 @@ export default function Contact() {
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-white/5">
-                    <Mail className="w-4 h-4 text-brand-orange" />
+                    <Mail className="w-4 h-4 text-brand-blue" />
                   </div>
                   <a
                     href={`mailto:${office.email}`}
-                    className="text-sm font-medium text-white/80 hover:text-brand-orange transition-colors"
+                    className="text-sm font-medium text-white/80 hover:text-brand-blue transition-colors"
                   >
                     {office.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-white/5">
-                    <Clock className="w-4 h-4 text-brand-orange" />
+                    <Clock className="w-4 h-4 text-brand-blue" />
                   </div>
                   <p className="text-sm font-medium text-white/80">{office.hours}</p>
                 </div>

@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Play, Globe, Ship, Package, Truck } from 'lucide-react';
-import { scrollToSection } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const stats = [
   { icon: Globe, value: 'China → Rwanda', label: 'Trade Corridor' },
@@ -47,7 +47,7 @@ export default function Hero() {
               <br />
               SOURCING.
               <br />
-              <span className="text-brand-orange">CHINA TO RWANDA.</span>
+              <span className="text-brand-blue">CHINA TO RWANDA.</span>
             </motion.h1>
 
             <motion.p
@@ -66,24 +66,22 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <button
-                type="button"
-                onClick={() => scrollToSection('contact')}
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-3.5 rounded-full font-semibold transition-all shadow-xl shadow-brand-orange/25 flex items-center gap-2 cursor-pointer"
+              <Link
+                to="/contact"
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-3.5 rounded-full font-semibold transition-all shadow-xl shadow-brand-orange/25 flex items-center gap-2"
               >
                 Start Sourcing
                 <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSection('services')}
-                className="text-white/80 hover:text-white px-2 py-3.5 font-medium transition-colors flex items-center gap-3 cursor-pointer"
+              </Link>
+              <Link
+                to="/services"
+                className="text-white/80 hover:text-white px-2 py-3.5 font-medium transition-colors flex items-center gap-3"
               >
                 <span className="w-10 h-10 rounded-full border border-white/25 flex items-center justify-center bg-white/5">
                   <Play className="w-3.5 h-3.5 fill-white" />
                 </span>
                 Our Services
-              </button>
+              </Link>
             </motion.div>
           </div>
         </div>

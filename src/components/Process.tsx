@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Search, ShieldCheck, Clock, Headphones } from 'lucide-react';
-import { scrollToSection } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const timeline = [
   {
@@ -51,14 +51,13 @@ export default function Process() {
                 <Stat icon={Headphones} title="24/7 support" copy="Always a coordinator on call" />
               </div>
             </div>
-            <button
-              type="button"
-              onClick={() => scrollToSection('contact')}
-              className="mt-8 text-brand-orange hover:text-white text-sm font-semibold inline-flex items-center gap-2 cursor-pointer transition-colors self-start"
+            <Link
+              to="/track"
+              className="mt-8 text-brand-blue hover:text-white text-sm font-semibold inline-flex items-center gap-2 cursor-pointer transition-colors self-start"
             >
               Track Shipment
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <motion.div
@@ -138,7 +137,7 @@ function Stat({
 }) {
   return (
     <div className="flex items-start gap-3">
-      <Icon className="w-4 h-4 text-brand-orange mt-0.5 shrink-0" />
+      <Icon className="w-4 h-4 text-brand-blue mt-0.5 shrink-0" />
       <div>
         <p className="text-sm font-semibold text-white">{title}</p>
         <p className="text-xs text-white/40">{copy}</p>

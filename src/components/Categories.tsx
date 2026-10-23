@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { scrollToSection } from '../utils/navigation';
 
 const categories = [
   {
@@ -68,14 +67,13 @@ export default function Categories() {
                 We ship to Rwanda across all major product categories, connecting your
                 business to verified factories in China.
               </p>
-              <button
-                type="button"
-                onClick={() => scrollToSection('contact')}
-                className="text-white hover:text-brand-orange text-sm font-semibold inline-flex items-center gap-2 cursor-pointer transition-colors self-start"
+              <Link
+                to="/destinations"
+                className="text-white hover:text-brand-blue text-sm font-semibold inline-flex items-center gap-2 cursor-pointer transition-colors self-start"
               >
                 View All Categories
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           </div>
 

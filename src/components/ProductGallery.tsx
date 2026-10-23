@@ -54,14 +54,14 @@ export default function ProductGallery({ category, onBack }: ProductGalleryProps
       <div className="max-w-7xl mx-auto px-6">
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-brand-navy/60 hover:text-brand-orange transition-colors mb-12 group"
+          className="flex items-center gap-2 text-brand-navy/60 hover:text-brand-blue transition-colors mb-12 group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span className="text-sm font-bold uppercase tracking-widest">Back to Categories</span>
         </button>
 
         <div className="mb-16">
-          <span className="text-brand-orange text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">
+          <span className="text-brand-blue text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">
             Sourcing Catalog
           </span>
           <h2 className="text-4xl md:text-6xl font-extrabold text-brand-navy tracking-tighter mb-4">
@@ -100,10 +100,10 @@ export default function ProductGallery({ category, onBack }: ProductGalleryProps
               </div>
               <div className="px-2">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-bold text-brand-navy group-hover:text-brand-orange transition-colors leading-tight">
+                  <h3 className="font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight">
                     {product.name}
                   </h3>
-                  <span className="text-brand-orange font-black text-sm">{product.price}</span>
+                  <span className="text-brand-blue font-black text-sm">{product.price}</span>
                 </div>
                 <p className="text-brand-navy/40 text-xs leading-relaxed line-clamp-2">
                   {product.description}

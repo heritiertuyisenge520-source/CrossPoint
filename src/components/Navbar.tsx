@@ -1,23 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { handleSectionClick } from '../utils/navigation';
+import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Home', id: null },
-  { name: 'About', id: 'about' },
-  { name: 'Services', id: 'services' },
-  { name: 'Destinations', id: 'categories' },
-  { name: 'Track Shipment', id: 'process' },
-  { name: 'Contact', id: 'contact' },
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '/about' },
+  { name: 'Services', to: '/services' },
+  { name: 'Destinations', to: '/destinations' },
+  { name: 'Track Shipment', to: '/track' },
+  { name: 'Contact', to: '/contact' },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  const [activePath, setActivePath] = useState(location.pathname);
+
+  useEffect(() => {
+    setActivePath(location.pathname);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const sync = () => setActivePath(window.location.pathname);
+    window.addEventListener('cps-url-change', sync);
+    return () => window.removeEventListener('cps-url-change', sync);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +37,15 @@ export default function Navbar() {
   }, []);
 
   const isHome = location.pathname === '/';
+
+  const handleHomeClick = (e: MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      history.replaceState(null, '', '/');
+      setActivePath('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav
@@ -49,26 +67,29 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
-            <button
+            <Link
               key={link.name}
-              type="button"
-              onClick={(e) => handleSectionClick(e, link.id, location.pathname, navigate)}
-              className="text-[13px] font-medium text-white/70 hover:text-white transition-colors cursor-pointer"
+              to={link.to}
+              onClick={link.to === '/' ? handleHomeClick : undefined}
+              className={`text-[13px] font-medium transition-colors ${
+                activePath === link.to
+                  ? 'text-brand-orange'
+                  : 'text-white/70 hover:text-white'
+              }`}
             >
               {link.name}
-            </button>
+            </Link>
           ))}
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <button
-            type="button"
-            onClick={(e) => handleSectionClick(e, 'contact', location.pathname, navigate)}
-            className="bg-brand-orange hover:bg-brand-orange/90 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-brand-orange/20"
+          <Link
+            to="/contact"
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all flex items-center gap-2 shadow-lg shadow-brand-orange/20"
           >
             Start Sourcing
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
 
         <button
@@ -90,28 +111,29 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <button
+                <Link
                   key={link.name}
-                  type="button"
+                  to={link.to}
                   onClick={(e) => {
-                    handleSectionClick(e, link.id, location.pathname, navigate);
+                    if (link.to === '/') handleHomeClick(e);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-lg font-medium text-white/70 hover:text-brand-orange text-left cursor-pointer"
+                  className={`text-lg font-medium transition-colors ${
+                    activePath === link.to
+                      ? 'text-brand-orange'
+                      : 'text-white/70 hover:text-white'
+                  }`}
                 >
                   {link.name}
-                </button>
+                </Link>
               ))}
-              <button
-                type="button"
-                onClick={(e) => {
-                  handleSectionClick(e, 'contact', location.pathname, navigate);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="mt-2 bg-brand-orange text-white font-semibold px-5 py-3 rounded-full cursor-pointer"
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-2 bg-brand-orange text-white font-semibold px-5 py-3 rounded-full text-center"
               >
                 Start Sourcing
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
