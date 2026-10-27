@@ -3,14 +3,18 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
+import Process from '../components/Process';
 import Categories from '../components/Categories';
+import BentoStats from '../components/BentoStats';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
 const sectionToPath: Record<string, string> = {
   home: '/',
   services: '/services',
+  process: '/track',
   categories: '/destinations',
+  about: '/about',
   contact: '/contact',
 };
 
@@ -36,7 +40,7 @@ export default function Home() {
           }
         }
       },
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0 }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -48,7 +52,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
+      <Process />
       <Categories />
+      <BentoStats />
       <Contact />
       <Footer />
     </main>

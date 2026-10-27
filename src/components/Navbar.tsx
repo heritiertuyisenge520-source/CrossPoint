@@ -1,6 +1,6 @@
 import { useState, useEffect, type MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
@@ -56,16 +56,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img
-            src="/logo-with-text.jpg"
-            alt="CrossPoint Solutions Logo"
-            className="h-12 w-auto object-contain"
-            referrerPolicy="no-referrer"
-          />
-        </Link>
-
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-7 ml-auto">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -82,18 +73,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="bg-brand-orange hover:bg-brand-orange/90 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all flex items-center gap-2 shadow-lg shadow-brand-orange/20"
-          >
-            Start Sourcing
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
         <button
-          className="lg:hidden text-white cursor-pointer"
+          className="lg:hidden text-white cursor-pointer ml-auto"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -127,13 +108,6 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Link
-                to="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 bg-brand-orange text-white font-semibold px-5 py-3 rounded-full text-center"
-              >
-                Start Sourcing
-              </Link>
             </div>
           </motion.div>
         )}

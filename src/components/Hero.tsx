@@ -24,6 +24,16 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/70 to-transparent lg:from-brand-navy lg:via-brand-navy/25 lg:to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-brand-navy/50" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-navy" />
+
+          {/* Faint logo watermark blended into the photo */}
+          <img
+            src="/logo.jpg"
+            alt=""
+            aria-hidden="true"
+            draggable={false}
+            referrerPolicy="no-referrer"
+            className="pointer-events-none select-none absolute right-[4%] md:right-auto md:left-[8%] top-1/2 -translate-y-1/2 w-[240px] md:w-[320px] xl:w-[440px] opacity-[0.11] md:opacity-[0.13] mix-blend-screen [filter:invert(1)]"
+          />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 pt-32 pb-16 w-full">
